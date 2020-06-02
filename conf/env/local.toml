@@ -1,0 +1,4 @@
+[db]
+  user = "root"
+  password = "root"
+  ip    = "localhost:3345"
