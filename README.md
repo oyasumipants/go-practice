@@ -37,10 +37,10 @@ DBの起動ができたらサーバーを起動します.
 go run cmd/main.go
 ```
 で起動できます.
-[localhost:8080](localhost:8080)でリクエストを待ちます.
+[localhost:8080](http://localhost:8080)でリクエストを待ちます.
 
 ### 3. ページを覗いてみる
 
-choromeなどのブラウザを起動して[localhost:8080](localhost:8080)にアクセスするとページが見れるはずです.
+choromeなどのブラウザを起動して[localhost:8080](http://localhost:8080)にアクセスするとページが見れるはずです.
 
 
