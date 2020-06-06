@@ -41,6 +41,6 @@ go run cmd/main.go
 
 ### 3. ページを覗いてみる
 
-choromeなどのブラウザを起動して[localhost:8080](http://localhost:8080)にアクセスするとページが見れるはずです.
+chromeなどのブラウザを起動して[localhost:8080](http://localhost:8080)にアクセスするとページが見れるはずです.
 
 
