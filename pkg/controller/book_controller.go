@@ -13,6 +13,7 @@ type BookController interface {
 	Index(ctx *gin.Context)
 	Edit(ctx *gin.Context)
 	Update(ctx *gin.Context)
+	Delete(ctx *gin.Context)
 }
 
 type bookController struct {
@@ -94,6 +95,21 @@ func(b *bookController) Update(ctx *gin.Context){
 	}
 
 	ctx.Redirect(302, "/books")
+}
+
+func (b *bookController) Delete(ctx *gin.Context){
+	id, err := strconv.Atoi(ctx.Param("id"))
+	if err != nil {
+		panic(err)
+	}
+	err = b.bookService.Delete(id)
+
+	if err != nil {
+		ctx.HTML(500 ,"500.html",nil)
+		return
+	}
+
+	ctx.Redirect(302,"/books")
 }
 
 

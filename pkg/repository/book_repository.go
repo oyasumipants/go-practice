@@ -10,6 +10,7 @@ type BookRepository interface{
 	FindAll() ([]model.Book, error)
 	FindOne(id int) (model.Book, error)
 	Update(book model.Book) error
+	Delete(id int) error
 }
 
 
@@ -40,4 +41,9 @@ func (b *bookRepository) Create(book model.Book) error{
 
 func (b *bookRepository) Update(book model.Book) error {
 	return b.db.Save(&book).Error
+}
+
+func (b *bookRepository) Delete(id int) error{
+	var book model.Book
+	return b.db.Delete(&book,"id=?", id).Error
 }
