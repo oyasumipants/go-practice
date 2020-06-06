@@ -10,6 +10,7 @@ type BookService interface{
 	FindAll() ([]model.Book, error)
 	FindOne(id int) (model.Book, error)
 	Update(book model.Book) error
+	Delete(id int) error
 }
 
 type bookService struct {
@@ -34,4 +35,8 @@ func (b *bookService) Create(book model.Book) error{
 
 func (b *bookService) Update(book model.Book) error{
 	return b.BookRepository.Update(book)
+}
+
+func (b *bookService) Delete(id int) error{
+	return b.BookRepository.Delete(id)
 }
