@@ -8,6 +8,7 @@ import (
 type BookService interface{
 	Create(book model.Book) error
 	FindAll() ([]model.Book, error)
+	FindOne(id int) (model.Book, error)
 	Update(book model.Book) error
 }
 
@@ -21,6 +22,10 @@ func NewBookService(r repository.BookRepository) BookService {
 
 func (b *bookService) FindAll() ([]model.Book, error){
 	return b.BookRepository.FindAll()
+}
+
+func (b *bookService) FindOne(id int) (model.Book, error){
+	return b.BookRepository.FindOne(id)
 }
 
 func (b *bookService) Create(book model.Book) error{

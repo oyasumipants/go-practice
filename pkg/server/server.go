@@ -18,17 +18,22 @@ func router() *gin.Engine {
 	r := gin.Default()
 	r.LoadHTMLGlob("view/*.html")
 	bookController := bookInjector()
-	r.GET("/", bookController.Index )
-	r.POST("/create", bookController.Create)
+	r.GET("/", func(context *gin.Context) {
+		context.HTML(200, "top.html", nil)
+	})
+	r.GET("/books", bookController.Index )
+	r.GET("/books/:id/edit", bookController.Edit)
+	r.POST("/books/:id/update",bookController.Update)
+	r.POST("/book/create", bookController.Create)
 	return r
 }
 
 func bookInjector() controller.BookController{
 	db := conf.GetDB()
-	repo := repository.NewBookRepository(db)
-	ser := service.NewBookService(repo)
-	ctr := controller.NewBookController(ser)
-	return ctr
+	bookRepository := repository.NewBookRepository(db)
+	bookService := service.NewBookService(bookRepository)
+	bookController := controller.NewBookController(bookService)
+	return bookController
 }
 
 

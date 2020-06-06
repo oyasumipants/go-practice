@@ -11,6 +11,8 @@ import (
 type BookController interface {
 	Create(ctx *gin.Context)
 	Index(ctx *gin.Context)
+	Edit(ctx *gin.Context)
+	Update(ctx *gin.Context)
 }
 
 type bookController struct {
@@ -27,7 +29,7 @@ func(b *bookController) Index(ctx *gin.Context){
 		ctx.HTML(500,"500.html",nil)
 	}
 
-	ctx.HTML(200, "index.html", gin.H{"books": books })
+	ctx.HTML(200, "book-index.html", gin.H{"books": books })
 }
 
 func(b *bookController) Create(ctx *gin.Context){
@@ -48,9 +50,23 @@ func(b *bookController) Create(ctx *gin.Context){
 		return
 	}
 
-	ctx.Redirect(302, "/")
+	ctx.Redirect(302, "/books")
 }
 
+func (b *bookController) Edit(ctx *gin.Context){
+	id, err := strconv.Atoi(ctx.Param("id"))
+	if err != nil {
+		panic(err)
+	}
+
+	book, err := b.bookService.FindOne(id)
+
+	if err != nil {
+		ctx.HTML(500, "500.html", nil)
+		return
+	}
+	ctx.HTML(200, "book-edit.html", gin.H{"book": book})
+}
 
 func(b *bookController) Update(ctx *gin.Context){
 	id, err := strconv.Atoi(ctx.Param("id"))
@@ -77,7 +93,7 @@ func(b *bookController) Update(ctx *gin.Context){
 		return
 	}
 
-	ctx.Redirect(302, "/")
+	ctx.Redirect(302, "/books")
 }
 
 

@@ -8,6 +8,7 @@ import (
 type BookRepository interface{
 	Create(book model.Book) error
 	FindAll() ([]model.Book, error)
+	FindOne(id int) (model.Book, error)
 	Update(book model.Book) error
 }
 
@@ -25,6 +26,12 @@ func (b *bookRepository) FindAll() ([]model.Book, error){
 	var books []model.Book
 	err := b.db.Find(&books).Error
 	return books, err
+}
+
+func (b *bookRepository) FindOne(id int) (model.Book, error){
+	var book model.Book
+	err := b.db.First(&book, "id=?", id).Debug().Error
+	return book, err
 }
 
 func (b *bookRepository) Create(book model.Book) error{
