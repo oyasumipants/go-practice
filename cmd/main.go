@@ -4,8 +4,8 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/HazeyamaLab/go_crud/conf"
-	"github.com/HazeyamaLab/go_crud/pkg/server"
+	"github.com/HazeyamaLab/go-crud/conf"
+	"github.com/HazeyamaLab/go-crud/pkg/server"
 )
 
 var state = flag.String("s", "local", "local/prd")

@@ -1,4 +1,4 @@
 [db]
   user = "root"
-  password = "root"
-  ip    = "localhost:3345"
+  password = "crud"
+  ip    = "localhost:3333"

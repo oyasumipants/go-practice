@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>books</title>
+</head>
+<body>
+<div>
+    <div class="input">
+        <form action="/create" method="post">
+            <p>Title :<input type="text" name="title" size="30"placeholder="タイトル名"/></p>
+            <p>Price :<input type="text" name="price" size="30" placeholder="値段" /></p>
+            <p>Author :<input type="text" name="author" size="30" placeholder="著者名" /></p>
+            <p><input type="submit" value="Send" /></p>
+        </form>
+    </div>
+    <p>一覧</p>
+    <ul>
+        {{range .books}}
+        <li>
+            Title: {{.Title}}, Price: {{.Price}}, Author: {{.Author}}
+        </li>
+        {{end}}
+    </ul>
+</div>
+</body>
+</html>

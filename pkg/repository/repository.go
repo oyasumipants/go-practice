@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"github.com/HazeyamaLab/go_crud/pkg/domain/model"
+	"github.com/HazeyamaLab/go-crud/pkg/domain/model"
 	"github.com/jinzhu/gorm"
 )
 
