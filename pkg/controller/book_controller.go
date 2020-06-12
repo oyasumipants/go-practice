@@ -40,7 +40,9 @@ func(b *bookController) Create(ctx *gin.Context){
 	//intに変換
 	price, err := strconv.Atoi(ctx.PostForm("price"))
 	if err != nil {
-		panic(err)
+		log.Println(err)
+		ctx.HTML(500, "500.html", nil)
+		return
 	}
 	book := model.Book{Title: title, Price: price, Author: author}
 
@@ -57,7 +59,9 @@ func(b *bookController) Create(ctx *gin.Context){
 func (b *bookController) Edit(ctx *gin.Context){
 	id, err := strconv.Atoi(ctx.Param("id"))
 	if err != nil {
-		panic(err)
+		log.Println(err)
+		ctx.HTML(500, "500.html", nil)
+		return
 	}
 
 	book, err := b.bookService.FindOne(id)
@@ -72,7 +76,9 @@ func (b *bookController) Edit(ctx *gin.Context){
 func(b *bookController) Update(ctx *gin.Context){
 	id, err := strconv.Atoi(ctx.Param("id"))
 	if err != nil {
-		panic(err)
+		log.Println(err)
+		ctx.HTML(500, "500.html", nil)
+		return
 	}
 
 	title := ctx.PostForm("title")
@@ -82,7 +88,9 @@ func(b *bookController) Update(ctx *gin.Context){
 	//intに変換
 	price, err := strconv.Atoi(ctx.PostForm("price"))
 	if err != nil {
-		panic(err)
+		log.Println(err)
+		ctx.HTML(500, "500.html", nil)
+		return
 	}
 
 
@@ -90,6 +98,7 @@ func(b *bookController) Update(ctx *gin.Context){
 
 	err = b.bookService.Update(book)
 	if err != nil {
+		log.Println(err)
 		ctx.HTML(500, "500.html", nil)
 		return
 	}
@@ -100,7 +109,9 @@ func(b *bookController) Update(ctx *gin.Context){
 func (b *bookController) Delete(ctx *gin.Context){
 	id, err := strconv.Atoi(ctx.Param("id"))
 	if err != nil {
-		panic(err)
+		log.Println(err)
+		ctx.HTML(500, "500.html", nil)
+		return
 	}
 	err = b.bookService.Delete(id)
 
